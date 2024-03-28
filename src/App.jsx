@@ -6,7 +6,7 @@ function App() {
   const [allowNumber, setAllowNumber] = useState(false);
   const [allowChar, setAllowChar] = useState(false);
   const [password, setPassword] = useState("");
-  const passwordGenerator = useCallback(() => { // useHook is used for optimizing 
+  const passwordGenerator = useCallback(() => { // this Hook is used for optimizing it basically store in cash memory
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (allowNumber) str += "0123456789";
