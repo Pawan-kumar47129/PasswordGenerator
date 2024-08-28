@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect ,useRef} from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -6,7 +6,8 @@ function App() {
   const [allowNumber, setAllowNumber] = useState(false);
   const [allowChar, setAllowChar] = useState(false);
   const [password, setPassword] = useState("");
-  const passwordGenerator = useCallback(() => { // this Hook is used for optimizing it basically store in cash memory
+  const passwordGenerator = useCallback(() => {
+    // this Hook is used for optimizing it basically store in cash memory
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (allowNumber) str += "0123456789";
@@ -18,17 +19,19 @@ function App() {
     setPassword(pass);
   }, [length, allowNumber, allowChar, setPassword]);
 
-  useEffect(()=>{ // useEffect run first we page is load and then anychanges in the given array value
+  useEffect(() => {
+    // useEffect run first we page is load and then anychanges in the given array value
     passwordGenerator();
-  },[length,allowNumber,allowChar,passwordGenerator])
+  }, [length, allowNumber, allowChar, passwordGenerator]);
 
   //for copy  useRef hook
-  const passwordRef=useRef(null); //useref is take referance 
-  const copyPasswordToClipBord=()=>{ //we can use useCallBack hook for otimize
+  const passwordRef = useRef(null); //useref is take referance
+  const copyPasswordToClipBord = () => {
+    //we can use useCallBack hook for otimize
     passwordRef.current?.select(); // we select the password then highlight password
-    // passwordRef.current?.setSelectionRange(0,2) //for select in range 
-    window.navigator.clipboard.writeText(password)
-  }
+    // passwordRef.current?.setSelectionRange(0,2) //for select in range
+    window.navigator.clipboard.writeText(password);
+  };
   return (
     <>
       <div className=" w-full max-w-md text-orange-600 bg-gray-700 mx-auto px-4 py-2 text-left rounded-xl">
@@ -43,9 +46,10 @@ function App() {
             placeholder="Password"
             ref={passwordRef} //useRef
           />
-          <button 
-          onClick={copyPasswordToClipBord}
-          className=" bg-blue-800 px-4 py-1 text-center mb-2 rounded-tr-lg rounded-br-lg text-xl outline-none font-medium ">
+          <button
+            onClick={copyPasswordToClipBord}
+            className=" bg-blue-800 px-4 py-1 text-center mb-2 rounded-tr-lg rounded-br-lg text-xl outline-none font-medium "
+          >
             copy
           </button>
         </div>
